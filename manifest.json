@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Canvas Assignment Extractor",
+  "version": "0.1.0",
+  "description": "Download Canvas assignments as PDFs, with template links.",
+  "action": {
+    "default_popup": "src/popup.html"
+  },
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://canvas.*/*",
+    "https://*.instructure.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://canvas.*/*", "https://*.instructure.com/*"],
+      "js": ["src/content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
